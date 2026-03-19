@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My HTML Portfolio</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Checkbox Hack for Dark Mode -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox" aria-label="Toggle Dark Mode">
+    
+    <div class="app-wrapper">
+        <div class="theme-toggle-container">
+            <label for="theme-toggle" class="theme-toggle-label" title="Toggle Dark/Light Mode">
+                <span class="icon light-icon" aria-hidden="true">☀️</span>
+                <span class="icon dark-icon" aria-hidden="true">🌙</span>
+                <div class="toggle-ball"></div>
+            </label>
+        </div>
+
+        <!-- Header -->
+        <header>
+        <h1 title="My name">Daniel Barcelona</h1>
+        <p>
+            Aspiring Web Developer | HTML | CSS | JavaScript
+        </p>
+    </header>
+    <hr>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">Daniel B.</div>
+        <div class="nav-links">
+            <a href="#aboutMeId">About</a>
+            <a href="#skillsId">Skills</a>
+            <a href="#projectsId">Projects</a>
+            <a href="#contactid">Contact</a>
+        </div>
+    </nav>
+    <hr>
+    <!-- Main -->
+    <main>
+        <!-- About Me Section -->
+         <section id="aboutMeId" class="section-card">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="profile-frame">
+                    <img width="200" src="/images/IMG_20260218_142359.jpg" alt="profile picture">
+                </div>
+                <p>
+                    I am a student learning Web Development.
+                </p>
+            </div>
+         </section>
+         <hr>
+          <!-- Skills -->
+           <section id="skillsId" class="section-card">
+             <h2>🛠️ Skills</h2>
+             <ul class="skills-list">
+                 <li>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="64" height="64" fill="#e34c26"><path d="M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z"/></svg>
+                     <span>HTML</span>
+                 </li>
+                 <li>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="64" height="64" fill="#264de4"><path d="M0 32l34.9 395.8L192 480l157.1-52.2L384 32H0zm313.1 80l-4.8 47.3L193 208.6l-.3 .1h111.5l-12.8 146.6-98.2 28.7-98.8-29.2-6.4-73.9h48.9l3.2 38.3 52.6 13.3 54.7-15.4 3.7-61.6-166.3-.5v-.1l-.2 .1-3.6-46.3L193.1 162l6.5-2.7H76.7L70.9 112h242.2z"/></svg>
+                     <span>CSS</span>
+                 </li>
+                 <li>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="64" height="64" fill="#f7df1e"><path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c8.4 16.5 19.8 28.2 41.5 28.2 16.8 0 26.4-6.6 26.4-16.5 0-12.6-14.4-16.5-37.8-24.9-34.8-12-58.8-27.3-58.8-63.3 0-33.1 24.3-56.5 59.5-56.5 31.8 0 54 13.5 64.9 36l-33.1 20.7c-5.7-11.7-16.2-22.2-31.2-22.2-12.3 0-20.7 6.6-20.7 15.6 0 10.8 12.3 14.7 34.2 21.6 38.1 12.3 62.2 25.8 62.2 64.6-.1 36.4-25.2 59.4-64.7 59.4z"/></svg>
+                     <span>JavaScript</span>
+                 </li>
+             </ul>
+           </section>
+           <hr>
+
+          <!-- Project Sections -->
+           <section id="projectsId" class="section-card projects-section">
+                <h2>My Projects</h2>
+
+                <div class="projects-grid">
+                    <article class="project-card">
+                    <h3>Sample Project</h3>
+                    <p>This is a sample html project.
+                    </p>
+                    <a href="#" class="btn">View Project</a>
+                </article>
+                <article class="project-card">
+                    <h3>first-html-project</h3>
+                    <p>Simple HTML first project.
+                    </p>
+                    <a href="https://first-html-project-eta.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/first-html-project" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-IT-portal-iframe</h3>
+                    <p>Simple HTML IT portal iframe project.
+                    </p>
+                    <a href="https://html-it-portal-iframe-barcelona-dan.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-IT-portal-iframe-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-it-project-demo</h3>
+                    <p>Simple HTML IT project demo project.
+                    </p>
+                    <a href="https://html-it-project-demo-barcelona-dani.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-it-project-demo-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-IT-students-schedule</h3>
+                    <p>Simple HTML IT students schedule project.
+                    </p>
+                    <a href="https://html-it-students-schedule-barcelona.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-IT-students-schedule-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-student-registration-form</h3>
+                    <p>Simple HTML student registration form project.
+                    </p>
+                    <a href="https://html-student-registration-form-barc.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-student-registration-form-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-user-account-creation</h3>
+                    <p>Simple HTML user account creation project.
+                    </p>
+                    <a href="https://html-user-account-creation-barcelon.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-user-account-creation-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-study-playlists</h3>
+                    <p>Simple HTML study playlists project.
+                    </p>
+                    <a href="https://html-study-playlists-barcelona-dani.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-study-playlists-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                <article class="project-card">
+                    <h3>html-certification-project</h3>
+                    <p>My HTML Certification Project.
+                    </p>
+                    <a href="https://html-certification-project-barcelon.vercel.app/" target="_blank" class="btn">Live Demo</a>
+                    <a href="https://github.com/Daniel-Barcelona/html-certification-project-barcelona-daniel" target="_blank" class="btn btn-outline">View Code</a>
+                </article>
+                </div>
+           </section>
+           <hr>
+
+           <!-- Contact Section -->
+            <section id="contactid" class="section-card">
+                <h2>📫 Contact Me</h2>
+                <p>
+                    📱 Mobile number:
+                    <strong>09292266489</strong>
+                </p>
+                <p>
+                    ✉️ Email:
+                    <strong>
+                        <a href="mailto:barcelonadaniel50@gmail.com">barcelonadaniel50@gmail.com</a>
+                    </strong>
+                </p>
+            </section>
+            <hr>
+            <!-- footer -->
+             <footer>
+                &copy; Daniel B. 2026
+             </footer>
+             <hr>
+
+    </main>
+    </div> <!-- End .app-wrapper -->
+</body>
+</html>
