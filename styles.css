@@ -1,0 +1,495 @@
+/* =========================================
+   CSS Variables & Theming
+   ========================================= */
+:root {
+  /* Colors - Light Theme (Glassmorphism) */
+  --app-bg: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+  --text-color: #1e293b;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.5);
+  --toggle-bg: #cbd5e1;
+  --header-bg: rgba(255, 255, 255, 0.4);
+  --vivid-gradient: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6, #3b82f6);
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 100%);
+  --glass-border-light: rgba(255, 255, 255, 0.8);
+  --glass-border-dark: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --glass-inset: inset 1px 1px 1px rgba(255, 255, 255, 0.9), inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+  
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Layout & Spacing */
+  --max-width: 1000px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  font-family: var(--font-family);
+  background: #f7f9fc; /* Fallback */
+  color: var(--text-color);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+/* Hide hr tags, use CSS margins instead */
+hr {
+  display: none;
+}
+
+/* =========================================
+   Checkbox Hack: Dark Mode Logic!
+   ========================================= */
+.theme-toggle-checkbox {
+  display: none; /* Hide the actual checkbox */
+}
+
+/* When the checkbox is checked, style the .app-wrapper as dark mode */
+.theme-toggle-checkbox:checked ~ .app-wrapper {
+  --app-bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --text-color: #f1f5f9;
+  --primary-color: #60a5fa;
+  --primary-hover: #93c5fd;
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --toggle-bg: #475569;
+  --header-bg: rgba(15, 23, 42, 0.4);
+  --vivid-gradient: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6, #3b82f6);
+  --glass-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.3) 100%);
+  --glass-border-light: rgba(255, 255, 255, 0.15);
+  --glass-border-dark: rgba(0, 0, 0, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --glass-inset: inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* The wrapper holds the background and applies the theming */
+.app-wrapper {
+  min-height: 100vh;
+  background: var(--app-bg);
+  background-attachment: fixed;
+  color: var(--text-color);
+  transition: background var(--transition), color var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   Theme Toggle UI
+   ========================================= */
+.theme-toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.theme-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: 64px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  position: relative;
+  padding: 0 6px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.theme-toggle-label .icon {
+  font-size: 14px;
+  z-index: 1;
+}
+
+.toggle-ball {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: var(--primary-color); /* Signature Blue */
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), background-color 0.4s;
+}
+
+.theme-toggle-checkbox:checked ~ .app-wrapper .toggle-ball {
+  transform: translateX(32px);
+  background-color: var(--primary-color); /* Signature Blue in Dark Mode */
+}
+
+/* =========================================
+   Layout & Typography
+   ========================================= */
+header, nav, main, footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+  background: var(--vivid-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--glass-border-dark);
+  border-top: 1px solid var(--glass-border-light);
+  box-shadow: var(--glass-shadow);
+  position: sticky;
+  top: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 100;
+  margin-bottom: 2rem;
+  transition: var(--transition);
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--vivid-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+nav a:hover {
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Sections */
+section {
+  padding: 3rem 0;
+  scroll-margin-top: 80px;
+}
+
+.section-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  border-top: 1px solid var(--glass-border-light);
+  border-left: 1px solid var(--glass-border-light);
+  border-bottom: 1px solid var(--glass-border-dark);
+  border-right: 1px solid var(--glass-border-dark);
+  margin-bottom: 2rem;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  background: var(--vivid-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 50%;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* About Me */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.profile-frame {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: var(--glass-shadow);
+  z-index: 1;
+  margin: 1.5rem 0; /* Ensures the frame doesn't clip the pseudo borders */
+}
+
+/* Vivid Gradient Frame */
+.profile-frame::before {
+  content: '';
+  position: absolute;
+  inset: -10px; /* Expands outwards to form the border */
+  border-radius: 50%;
+  background: var(--vivid-gradient);
+  z-index: -2;
+}
+
+/* Glass Gap (The 'empty space' between picture and frame) */
+.profile-frame::after {
+  content: '';
+  position: absolute;
+  inset: -5px; /* Sits between the picture and the vivid border */
+  border-radius: 50%;
+  background: var(--card-bg); /* Matches the card to look like a gap */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: -1;
+}
+
+#aboutMeId img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+#aboutMeId p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Skills */
+#skillsId ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+#skillsId li {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 2.5rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1.25rem;
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  border-top: 1px solid var(--glass-border-light);
+  border-left: 1px solid var(--glass-border-light);
+  border-bottom: 1px solid var(--glass-border-dark);
+  border-right: 1px solid var(--glass-border-dark);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#skillsId li:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4), inset 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.project-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  border-top: 1px solid var(--glass-border-light);
+  border-left: 1px solid var(--glass-border-light);
+  border-bottom: 1px solid var(--glass-border-dark);
+  border-right: 1px solid var(--glass-border-dark);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4), inset 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.project-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+}
+
+.project-card p {
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  text-align: center;
+  transition: var(--transition);
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--primary-color);
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--card-bg);
+  border-color: var(--text-color);
+  color: var(--text-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Contact */
+#contactid p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+#contactid a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+#contactid a:hover {
+  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: auto;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   Responsive Media Queries
+   ========================================= */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+  
+/* Responsive overrides for About Me now handled natively by Flexbox column */
+  
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .nav-links {
+    gap: 0.5rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
